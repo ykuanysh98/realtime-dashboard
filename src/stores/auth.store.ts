@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { User, AuthState } from '../types'
+import type { User, AuthState } from '../types' 
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthState => ({
@@ -8,17 +8,18 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   getters: {
-    isAuthenticated: (state) => !!state.token,
-    isAdmin: (state) => state.user?.role === 'admin',
+    isAuthenticated: (state): boolean => !!state.token,
+    isAdmin:         (state): boolean => state.user?.role === 'admin',
+    fullName:        (state): string  => state.user?.name ?? 'Guest',
   },
 
   actions: {
-    login(user: User, token: string) {
+    login(user: User, token: string): void {
       this.user = user
       this.token = token
       localStorage.setItem('token', token)
     },
-    logout() {
+    logout(): void {
       this.user = null
       this.token = null
       localStorage.removeItem('token')
