@@ -1,5 +1,50 @@
-# Vue 3 + TypeScript + Vite
+# Real-time Dashboard
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Production-ready dashboard with live metrics, WebSocket, JWT auth, and role-based UI.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Stack
+
+- Vue 3 + TypeScript + Vite
+- Pinia (state management)
+- WebSocket (native API, auto-reconnect)
+- Docker + Nginx
+- GitHub Actions CI/CD
+
+## Quick Start
+
+### Local development
+
+```bash
+npm install
+
+# Terminal 1 — Mock WS server
+node src/mock/ws-server.js
+
+# Terminal 2 — Vue app
+npm run dev
+```
+
+### Docker
+
+```bash
+docker-compose up --build
+# App: http://localhost:3000
+```
+
+## Test accounts
+
+| Email | Password | Role |
+|-------|----------|------|
+| admin@test.com | 123456 | admin |
+| user@test.com  | 123456 | user  |
+
+## Role differences
+
+| Feature | Admin | User |
+|---------|-------|------|
+| All metrics | ✓ | — |
+| CPU + Memory only | ✓ | ✓ |
+| Admin Panel | ✓ | — |
+| Activity Feed | ✓ | ✓ |
+
+## Architecture
