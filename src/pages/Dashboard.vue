@@ -40,7 +40,7 @@ import AdminPanel  from '../components/AdminPanel.vue'
 const auth    = useAuthStore()
 const store   = useMetricsStore()
 const { activity, connected } = storeToRefs(store)
-const { connect } = useWebSocket('ws://localhost:8080')
+const { connect } = useWebSocket(import.meta.env.VITE_WS_URL)
 
 const visibleMetrics = computed(() => store.visibleMetrics(auth.isAdmin))
 
